@@ -1,0 +1,14 @@
+
+plugins {
+    id 'groovy'
+}
+
+dependencies {
+    // Use the latest Groovy version for building this library
+    implementation 'org.codehaus.groovy:groovy-all:2.5.7'
+
+    // Use the awesome Spock testing and specification framework
+    implementation 'org.spockframework:spock-core:1.3-groovy-2.5'
+    // https://mvnrepository.com/artifact/com.ullink.slack/simpleslackapi
+    implementation 'com.ullink.slack:simpleslackapi:1.2.0'
+}
