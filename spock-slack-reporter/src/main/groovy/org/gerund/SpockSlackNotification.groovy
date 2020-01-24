@@ -15,7 +15,7 @@ import static org.gerund.core.api.config.JobConfigValidator.SLACK_REPORTER_JOB_C
 class SpockSlackNotification {
 
     Boolean enabled, jobConfigValidated
-    String message, messageOnFailedBuild, userToken, environment, channelName, linkToReportFile
+    String message, userToken, environment, channelName, linkToReportFile
 
     SpockSlackNotification() {}
 

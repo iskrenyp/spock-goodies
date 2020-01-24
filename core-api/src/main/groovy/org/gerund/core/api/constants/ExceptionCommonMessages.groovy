@@ -9,6 +9,7 @@ class ExceptionCommonMessages {
     static final String CONNECTION_TO_SLACK_FAILED = "Connection to slack failed!"
     static final String DISCONNECTING_FROM_SLACK_FAILED = "Disconnecting from slack failed!"
     static final String SLACK_CHANNEL_NOT_FOUND = "No slack channel was found for the respective name: "
+    static final String ERROR_WHILE_SENDING_SLACK_NOTIFICATION = "An error occurred while sending the slack notification"
     static final String INVALID_LINK_TO_REPORT = "There was an error while validating the report link inside your config file"
     static final String BAD_SLACK_JOB_CONFIGURATION = "Improper job configuration"
 }

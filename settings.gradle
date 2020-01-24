@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'spock-goodies'
-include 'spock-slack-reporter', 'core-api'
+include 'spock-slack-reporter', 'core-api', 'spock-trello-reporter', 'spock-screen-recorder'
