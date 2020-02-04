@@ -1,10 +1,5 @@
-plugins {
-    id 'groovy'
-}
 
 dependencies {
-
-    implementation project(':core-api')
 
     // Use the awesome Spock testing and specification framework
     implementation group: 'org.spockframework', name: 'spock-core', version: '2.0-M1-groovy-2.5'
@@ -12,4 +7,6 @@ dependencies {
     implementation group: 'com.github.stephenc.monte', name: 'monte-screen-recorder', version: '0.7.7.0'
     implementation "org.slf4j:slf4j-api:1.7.25"
     implementation "org.slf4j:slf4j-simple:1.7.25"
+
+    compile project(':core-api')
 }

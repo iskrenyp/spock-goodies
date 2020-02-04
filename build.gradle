@@ -6,11 +6,6 @@
  * User Manual available at https://docs.gradle.org/5.6.4/userguide/tutorial_groovy_projects.html
  */
 
-plugins {
-    // Apply the groovy plugin to add support for Groovy
-    id 'groovy'
-}
-
 allprojects {
     repositories {
         jcenter()
@@ -18,7 +13,149 @@ allprojects {
 }
 
 subprojects {
-    version = '0.0.1'
+    apply plugin: "groovy"
+    apply plugin: "maven-publish"
+    apply plugin: "java-library"
+    apply plugin: "signing"
+
+
+    ext {
+        // the password needs to be specified via command line
+        sonatypePass = project.hasProperty('sonatypePass') ? project.getProperty('sonatypePass') : ''
+        currentVersion = '1.0.1'
+        // it looks like the ternary operator can not actually be
+        // split across lines; I do it here for artistic purposes
+    }
+
+    version = currentVersion
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    task sourceJar(type: Jar, dependsOn: classes) {
+        classifier 'sources'
+        from project.sourceSets.main.allSource
+    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier 'javadoc'
+        from project.javadoc.destinationDir
+    }
+
+    artifacts {
+        archives jar
+        archives sourceJar
+        archives javadocJar
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                customizePom(pom)
+                groupId = 'com.github.iskrenyp'
+                artifactId = project.name
+                version = currentVersion
+                sourceCompatibility = 1.8
+                targetCompatibility = 1.8
+                from project.components.java
+
+                // create the sign pom artifact
+                pom.withXml {
+                    def pomFile = file("${project.buildDir}/generated-pom.xml")
+                    writeTo(pomFile)
+                    def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                    artifact(pomAscFile) {
+                        classifier = null
+                        extension = 'pom.asc'
+                    }
+                }
+
+                artifact(sourceJar) {
+                    classifier = 'sources'
+                }
+                artifact(javadocJar) {
+                    classifier = 'javadoc'
+                }
+
+                // create the signed artifacts
+                project.tasks.signArchives.signatureFiles.each {
+                    artifact(it) {
+                        def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                        if (matcher.find()) {
+                            classifier = matcher.group(1)
+                        } else {
+                            classifier = null
+                        }
+                        extension = 'jar.asc'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+                credentials {
+                    username 'iskrenyp'
+                    password sonatypePass
+                }
+            }
+        }
+    }
+
+    model {
+        tasks.generatePomFileForMavenPublication {
+            destination = file("$buildDir/generated-pom.xml")
+        }
+        tasks.publishMavenPublicationToMavenLocal {
+            dependsOn project.tasks.signArchives
+        }
+        tasks.publishMavenPublicationToMavenRepository {
+            dependsOn project.tasks.signArchives
+        }
+    }
 
 }
 
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test" || dep.artifactId == "core-api"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'A simple annotation driven local extension for Spock framework, which enables you to screen record your Specifications'
+            name 'Spock Screen Recorder Extension'
+            url 'https://github.com/iskrenyp/spock-goodies'
+            organization {
+                name 'com.github.iskrenyp'
+                url 'https://github.com/iskrenyp'
+            }
+            licenses {
+                license {
+                    name 'Creative Commons Attribution 3.0 License'
+                    url 'https://creativecommons.org/licenses/by/3.0/'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/iskrenyp/spock-goodies'
+                connection 'scm:git:git://github.com/iskrenyp/spock-goodies.git'
+                developerConnection 'scm:git:ssh:git@github.com:iskrenyp/spock-goodies.git'
+            }
+            developers {
+                developer {
+                    name 'iskrenyp'
+                }
+            }
+        }
+    }
+}
