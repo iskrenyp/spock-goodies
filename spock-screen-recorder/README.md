@@ -1,7 +1,7 @@
 # spock-screen-recorder
 
-Spock Screen Recorder is a simple groovy library, which provides an annotation driven local extension for the [Spock Framework], which allows you to record video of your test execution. 
-It is build on top of the [monte-screen-recorder] lib and the Spock extensibility's beauty.
+Spock Screen Recorder is a simple groovy library, which provides an annotation driven local extension for the [Spock Framework], allowing you to record video of your test execution. 
+It is built on top of the [monte-screen-recorder] lib and the Spock extensibility's beauty.
 
 A common use case for this lib is when Spock is glued with [Geb] for an E2E functional testing suit. Here's an [example-geb-spock-screen-recorder] project.
 
