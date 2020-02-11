@@ -12,7 +12,7 @@ Add the spock-screen-recorder lib to your project dependencies (assuming you're 
 ```groovy
     // Use this declaration if you don't want to use the spock screen recorder dependencies
     // It avoids affecting your version of Groovy/Spock
-    testImplementation('com.github.iskrenyp:spock-screen-recorder:1.0.1') {
+    testImplementation('com.github.iskrenyp:spock-screen-recorder:1.0+') {
         exclude group: 'org.codehaus.groovy'
         exclude group: 'org.spockframework'
     }
