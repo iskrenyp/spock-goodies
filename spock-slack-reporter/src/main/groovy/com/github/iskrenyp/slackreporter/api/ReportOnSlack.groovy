@@ -1,4 +1,4 @@
-package org.gerund.api
+package com.github.iskrenyp.slackreporter.api
 
 import org.spockframework.runtime.extension.ExtensionAnnotation
 
@@ -11,5 +11,5 @@ import java.lang.annotation.Target
 @Target(ElementType.TYPE)
 @ExtensionAnnotation(SlackReporterAnnotationDrivenExtension.class)
 @interface ReportOnSlack {
-    String jobName()
+    String value()
 }

@@ -22,9 +22,7 @@ subprojects {
     ext {
         // the password needs to be specified via command line
         sonatypePass = project.hasProperty('sonatypePass') ? project.getProperty('sonatypePass') : ''
-        currentVersion = '1.0.1'
-        // it looks like the ternary operator can not actually be
-        // split across lines; I do it here for artistic purposes
+        currentVersion = '1.0.2'
     }
 
     version = currentVersion
@@ -133,7 +131,7 @@ def customizePom(pom) {
             resolveStrategy = Closure.DELEGATE_FIRST
 
             description 'A simple annotation driven local extension for Spock framework, which enables you to screen record your Specifications'
-            name 'Spock Screen Recorder Extension'
+            name 'Spock Framework local annotation driven extensions'
             url 'https://github.com/iskrenyp/spock-goodies'
             organization {
                 name 'com.github.iskrenyp'

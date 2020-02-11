@@ -31,7 +31,8 @@ trait IConfigFileRuler {
     IConfigFileRuler findConfigFile(String fileName, String startingPath) throws ISpockGoodyExtensionException {
         findSourceFilesRecursively(fileName, startingPath) { List<File> configFiles ->
             if (configFiles.size() > 1) throw new ISpockGoodyExtensionException("$MORE_THAN_ONE_CONFIG_FILE_FOUND $fileName . Please position just a single file within your current project root")
-            else this.configFile = configFiles.first()
+            else if (configFiles && configFiles.first()) this.configFile = configFiles.first()
+            else throw new ISpockGoodyExtensionException("$CONFIG_FILE_NOT_FOUND $fileName")
             this
         }
     }
