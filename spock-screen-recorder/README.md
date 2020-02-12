@@ -7,6 +7,14 @@ A common use case for this lib is when Spock is glued with [Geb] for an E2E func
 
 ### Example usage
 
+The spock-screen-recorder lib can be found under mavenCentral repository:
+
+```groovy
+    repositories {
+        mavenCentral()
+    }
+```
+
 Add the spock-screen-recorder lib to your project dependencies (assuming you're using Gradle as build tool):
 
 ```groovy

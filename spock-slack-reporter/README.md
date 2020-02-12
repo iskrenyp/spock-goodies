@@ -7,6 +7,14 @@ A common use case for using this lib is when you have different types of auto te
 
 ### Example usage
 
+The spock-slack-reporter lib can be found under mavenCentral repository:
+
+```groovy
+    repositories {
+        mavenCentral()
+    }
+```
+
 Add the spock-screen-recorder lib to your project dependencies (assuming you're using Gradle as build tool):
 
 ```groovy
