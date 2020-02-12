@@ -1,6 +1,6 @@
 # spock-slack-reporter
 
-Spock Screen Recorder is a simple groovy library, which provides an annotation driven local extension for the [Spock Framework], allowing you to notify your team mates on Slack after each test run. The notification contains the link to your (HTML) reports, the number of the failed cases and their names. 
+Spock-slack-reporter is a simple groovy library, which provides an annotation driven local extension for the [Spock Framework], allowing you to notify your team mates on Slack after each test run. The notification contains the link to your (HTML) reports, the number of the failed cases and their names. 
 It is built on top of the [simple-slack-api] lib and the Spock extensibility's beauty.
 
 A common use case for using this lib is when you have different types of auto tests (unit, integration, e2e) and your team is using Slack. You can increase your team's velocity by providing auto notifications in different channels, so that your team gets the test reports ASAP. Here's an [example-spock-slack-reporter] project.
