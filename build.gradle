@@ -22,7 +22,7 @@ subprojects {
     ext {
         // the password needs to be specified via command line
         sonatypePass = project.hasProperty('sonatypePass') ? project.getProperty('sonatypePass') : ''
-        currentVersion = '1.0.2'
+        currentVersion = '1.0.3'
     }
 
     version = currentVersion
@@ -123,7 +123,7 @@ def customizePom(pom) {
 
         // eliminate test-scoped dependencies (no need in maven central POMs)
         root.dependencies.removeAll { dep ->
-            dep.scope == "test" || dep.artifactId == "core-api"
+            dep.scope == "test" || dep.artifactId == "core-spockdbrepo.api"
         }
 
         // add all items necessary for maven central publication

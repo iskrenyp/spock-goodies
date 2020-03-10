@@ -15,10 +15,10 @@ The spock-slack-reporter lib can be found under mavenCentral repository:
     }
 ```
 
-Add the spock-screen-recorder lib to your project dependencies (assuming you're using Gradle as build tool):
+Add the spock-slack-reporter lib to your project dependencies (assuming you're using Gradle as build tool):
 
 ```groovy
-    // Use this declaration if you don't want to use the spock screen recorder dependencies
+    // Use this declaration if you don't want to use the spock slack reporter dependencies
     // It avoids affecting your version of Groovy/Spock
     testImplementation('com.github.iskrenyp:spock-slack-reporter:1.0+') {
         exclude group: 'org.codehaus.groovy'
@@ -77,9 +77,9 @@ class MyUserAcceptanceSpec extends Specification {}
 
 You can use the full-powered features of the ConfigSurpler, but always pass the four properties for each reporter: reportUrl, channelName, userToken, environment. All of them should be strings.
 
-After the test execution is finished, the spock-slack reporter will login to slack api by using the token for the specific reporter, find the channel you've specified and post a message in which provide the name of the reporter, the environment, the reportUrl, the test fails count and the names of the test cases, which failed.
+After the test execution is finished, the spock-slack reporter will login to slack spockdbrepo.api by using the token for the specific reporter, find the channel you've specified and post a message in which provide the name of the reporter, the environment, the reportUrl, the test fails count and the names of the test cases, which failed.
 
 [Spock Framework]: <http://spockframework.org/spock/docs/1.3/all_in_one.html>
 [simple-slack-api]: <https://github.com/Itiviti/simple-slack-api>
 [Geb]: <https://gebish.org/manual/current/>
-[example-spock-slack-reporter]: <https://github.com/iskrenyp/spock-goodies-examples/tree/master/screen-recorder-example>
+[example-spock-slack-reporter]: <https://github.com/iskrenyp/spock-goodies-examples/tree/master/slack-reporter-example>
