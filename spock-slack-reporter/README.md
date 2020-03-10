@@ -20,10 +20,7 @@ Add the spock-slack-reporter lib to your project dependencies (assuming you're u
 ```groovy
     // Use this declaration if you don't want to use the spock slack reporter dependencies
     // It avoids affecting your version of Groovy/Spock
-    testImplementation('com.github.iskrenyp:spock-slack-reporter:1.0+') {
-        exclude group: 'org.codehaus.groovy'
-        exclude group: 'org.spockframework'
-    }
+    testImplementation('com.github.iskrenyp:spock-slack-reporter:1.0+')
 ```
 
 Then create file within the root (src/test/resources is recommended) of you project with name SlackReporterConfig.groovy and inside the file add your reporters' description, like for example:

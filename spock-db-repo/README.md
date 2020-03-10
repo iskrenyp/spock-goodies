@@ -3,7 +3,7 @@
 Spock Db Repo is a simple groovy library, which provides an annotation driven local extension for the [Spock Framework], allowing you an easy repository implementation with a powerful validation mechanism, based on [OVal]. 
 It facilitates creation of SQL database monitoring specifications within E2E automation solution.
 
-A common use case for utilizing this lib is when high level business logic needs to be validated in the various SQL data stores (repositories). Here's an [example-spock-db-repo] project.
+A common use case for utilizing this lib is when high level business logic needs to be validated in the various SQL data stores. Here's an [example-spock-db-repo] project.
 
 ### Example usage
 
