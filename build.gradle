@@ -123,7 +123,7 @@ def customizePom(pom) {
 
         // eliminate test-scoped dependencies (no need in maven central POMs)
         root.dependencies.removeAll { dep ->
-            dep.scope == "test" || dep.artifactId == "core-spockdbrepo.api"
+            dep.scope == "test"
         }
 
         // add all items necessary for maven central publication

@@ -159,7 +159,9 @@ The annotation will initialize the field with an SqlDataStore instance, and pass
         }
     }
 ```
-In other words, the above select() method will map every returned row to the type you specify in the closure. 
+In other words, the above select() method will map every returned row to the type you specify in the closure
+and return it to you in a List. The validated() method checks for constraint violations and if there happen to be 
+such, the method will return false.
 No need to connect/disconnect from the db server. Everything is done withing the SqlDataStore class. It also
 supports inserts (with execute() method), updates (with executeUpdate() method), and calling stored procedures 
 with the call() method. All this is done by the wonderful [Groovy Sql Api]:
